@@ -3,201 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة الإيموجي 🍔🍕🍰</title>
+    <title>IM Studio - استوديو التصوير الخاص بك 📸</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
+            background-color: #f0f2f5;
+            color: #333;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            direction: rtl; /* للعربية */
+            padding: 0;
+            direction: rtl; /* اتجاه النص من اليمين لليسار */
+            text-align: right; /* محاذاة النص لليمين */
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: #007bff; /* أزرق جذاب */
+            color: white;
+            padding: 30px 20px;
             text-align: center;
         }
 
-        .menu-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
-            width: 100%;
-            margin-bottom: 30px;
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+            letter-spacing: 2px;
         }
 
-        h1 {
-            color: #007bff;
-            margin-bottom: 25px;
-            font-size: 2.8em;
+        .header p {
+            font-size: 1.2em;
+            margin-top: 10px;
         }
 
-        .menu-category {
-            margin-bottom: 30px;
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 20px;
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .menu-category:last-child {
+        section {
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
         }
 
         h2 {
-            color: #28a745; /* لون أخضر جميل للفئات */
-            font-size: 2em;
-            margin-bottom: 20px;
+            color: #007bff;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
         }
 
-        .menu-item {
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: #28a745; /* خط أخضر تحت العنوان */
+        }
+
+        /* About Us Section */
+        .about-us p {
+            font-size: 1.1em;
+            text-align: justify;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 180px; /* ارتفاع ثابت للصور */
+            object-fit: cover; /* لضمان تغطية الصورة للمساحة دون تشويه */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Services Section */
+        .services-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .services-list li {
+            background-color: #e9f7ef; /* خلفية خضراء فاتحة للخدمات */
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-top: 1px solid #e2e6ea;
         }
 
-        .menu-item:first-of-type {
-            border-top: none;
-        }
-
-        .item-details {
-            text-align: right;
-            flex-grow: 1;
-        }
-
-        .item-details h3 {
-            margin: 0;
+        .services-list li .emoji {
             font-size: 1.5em;
-            color: #495057;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end; /* لترتيب الإيموجي والاسم لليمين */
-        }
-
-        .item-details h3 .emoji {
-            font-size: 1.2em; /* حجم أكبر للإيموجي */
             margin-left: 10px; /* مسافة بين الإيموجي والنص */
         }
 
-        .item-details p {
-            margin: 5px 0 0 0;
-            color: #6c757d;
-            font-size: 1em;
-            line-height: 1.5;
+        /* Contact Section */
+        .contact-info p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
         }
 
-        .item-price {
-            font-size: 1.6em;
-            font-weight: bold;
-            color: #dc3545; /* لون أحمر للسعر */
-            margin-right: 20px;
-            white-space: nowrap; /* لمنع كسر السعر على سطرين */
+        .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            font-size: 2em;
+            color: #555;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
         }
 
         footer {
+            text-align: center;
+            padding: 20px;
             margin-top: 40px;
+            background-color: #343a40; /* خلفية داكنة للفوتر */
+            color: white;
             font-size: 0.9em;
-            color: #6c757d;
-        }
-
-        /* تنسيق لتجربة زر بسيط (يمكن حذفه إذا لم يكن مطلوبًا) */
-        .btn-customize {
-            background-color: #ffc107;
-            color: #343a40;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            margin-top: 30px;
-        }
-
-        .btn-customize:hover {
-            background-color: #e0a800;
         }
     </style>
 </head>
 <body>
-    <div class="menu-container">
-        <h1>قائمة اليوم 😋</h1>
+    <header class="header">
+        <h1>IM Studio 📸</h1>
+        <p>لحظات لا تُنسى، صور تحكي قصة.</p>
+    </header>
 
-        <div class="menu-category">
-            <h2>الوجبات الرئيسية 🍽️</h2>
-            <div class="menu-item">
-                <div class="item-details">
-                    <h3><span class="emoji">🍔</span> برجر لحم بقري</h3>
-                    <p>برجر لحم فاخر مع جبنة، خس، طماطم، ومخلل.</p>
-                </div>
-                <div class="item-price">35 SAR</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <h3><span class="emoji">🍕</span> بيتزا مارجريتا</h3>
-                    <p>صلصة طماطم، جبنة موزاريلا، وأوراق الريحان الطازجة.</p>
-                </div>
-                <div class="item-price">40 SAR</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <h3><span class="emoji">🍝</span> باستا الفريدو</h3>
-                    <p>مكرونة فيتوتشيني مع صلصة كريمة غنية بالدجاج والفطر.</p>
-                </div>
-                <div class="item-price">45 SAR</div>
-            </div>
-        </div>
+    <div class="container">
+        <section class="about-us">
+            <h2>نبذة عنا ✨</h2>
+            <p>
+                في IM Studio، نؤمن بأن كل لحظة تستحق أن تُخلد. نحن استوديو تصوير متخصص نقدم خدمات تصوير فوتوغرافي وفيديو عالية الجودة، ملتزمون بتحويل لحظاتكم الثمينة إلى ذكريات بصرية خالدة. فريقنا من المصورين المحترفين والمبدعين يستخدم أحدث التقنيات لتقديم صور وفيديوهات تحكي قصصكم بصدق وجمال.
+            </p>
+            <p>
+                سواء كانت مناسبة خاصة، جلسة تصوير شخصية، أو مشروع تجاري، نحن هنا لنجعل رؤيتكم واقعًا.
+            </p>
+        </section>
 
-        <div class="menu-category">
-            <h2>المشروبات 🥤</h2>
-            <div class="menu-item">
-                <div class="item-details">
-                    <h3><span class="emoji">🥤</span> كولا</h3>
-                    <p>مشروب غازي منعش.</p>
-                </div>
-                <div class="item-price">10 SAR</div>
+        <section class="gallery">
+            <h2>أعمالنا المميزة 🌟</h2>
+            <div class="gallery-grid">
+                <img src="https://via.placeholder.com/250x180?text=صورة+1" alt="صورة عمل 1">
+                <img src="https://via.placeholder.com/250x180?text=صورة+2" alt="صورة عمل 2">
+                <img src="https://via.placeholder.com/250x180?text=صورة+3" alt="صورة عمل 3">
+                <img src="https://via.placeholder.com/250x180?text=صورة+4" alt="صورة عمل 4">
+                <img src="https://via.placeholder.com/250x180?text=صورة+5" alt="صورة عمل 5">
+                <img src="https://via.placeholder.com/250x180?text=صورة+6" alt="صورة عمل 6">
             </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <h3><span class="emoji">🍊</span> عصير برتقال</h3>
-                    <p>عصير برتقال طازج 100%.</p>
-                </div>
-                <div class="item-price">15 SAR</div>
-            </div>
-        </div>
+        </section>
 
-        <div class="menu-category">
-            <h2>الحلويات 🍰</h2>
-            <div class="menu-item">
-                <div class="item-details">
-                    <h3><span class="emoji">🍰</span> كعكة الشوكولاتة</h3>
-                    <p>طبقات من كعكة الشوكولاتة الغنية مع كريمة الجناش.</p>
-                </div>
-                <div class="item-price">25 SAR</div>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <h3><span class="emoji">🍦</span> آيس كريم فانيليا</h3>
-                    <p>آيس كريم فانيليا كريمي مع صوص الشوكولاتة.</p>
-                </div>
-                <div class="item-price">20 SAR</div>
-            </div>
-        </div>
+        <section class="services">
+            <h2>خدماتنا المتنوعة 💖</h2>
+            <ul class="services-list">
+                <li><span class="emoji">👰</span> تصوير حفلات الزفاف والمناسبات.</li>
+                <li><span class="emoji">👨‍👩‍👧‍👦</span> جلسات التصوير العائلية والشخصية.</li>
+                <li><span class="emoji">👶</span> تصوير الأطفال والمواليد الجدد.</li>
+                <li><span class="emoji">🏢</span> تصوير المنتجات والإعلانات التجارية.</li>
+                <li><span class="emoji">🏞️</span> تصوير المناظر الطبيعية والسفر.</li>
+                <li><span class="emoji">🎬</span> خدمات تصوير الفيديو والمونتاج.</li>
+            </ul>
+        </section>
 
-        <button class="btn-customize" onclick="alert('هنا يمكن إضافة وظيفة التخصيص أو طلب! 🛠️');">
-            تخصيص قائمتك!
-        </button>
+        <section class="contact-us">
+            <h2>تواصل معنا 📞</h2>
+            <div class="contact-info">
+                <p><span class="emoji">📞</span> الهاتف: <a href="tel:+9647XXXXXXXXX">+964 7XXXXXXXXX</a></p>
+                <p><span class="emoji">📧</span> البريد الإلكتروني: <a href="mailto:info@imstudio.com">info@imstudio.com</a></p>
+                <p><span class="emoji">📍</span> العنوان: بغداد، العراق (مثال: شارع الرشيد، بالقرب من ساحة التحرير)</p>
+            </div>
+            <div class="social-links">
+                <a href="#" target="_blank" title="فيسبوك"><span class="emoji">📘</span></a>
+                <a href="#" target="_blank" title="انستغرام"><span class="emoji">📸</span></a>
+                <a href="#" target="_blank" title="تويتر/X"><span class="emoji">🐦</span></a>
+            </div>
+        </section>
     </div>
 
     <footer>
-        <p>✨ تصميم بسيط لقائمة باستخدام الإيموجي ✨</p>
-        <p>© 2024 جميع الحقوق محفوظة</p>
+        <p>كل الحقوق محفوظة لـ IM Studio &copy; 2024</p>
+        <p>تم التصميم بواسطة @LPD_o</p>
     </footer>
-
-    </body>
+</body>
 </html>
